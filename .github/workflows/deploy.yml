@@ -1,24 +1,33 @@
-name: Upload Portfolio
+name: Deploy Portfolio to S3
 
 on:
   push:
     branches:
-      - main
+      - main  # Ensures this runs only when you push to the main branch
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    
+    # These permissions are needed to interact with the repository
+    permissions:
+      id-token: write
+      contents: read
+
     steps:
-      - name: Checkout Repository
+      # Step 1: Get your code from GitHub
+      - name: Checkout Code
         uses: actions/checkout@v4
 
-      - name: Sync Files to S3
-        uses: jakejarvis/s3-sync-action@master
+      # Step 2: Log in to AWS (The Official Way)
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v4
         with:
-          args: --acl public-read --follow-symlinks --delete
-        env:
-          AWS_S3_BUCKET: ${{ secrets.AWS_S3_BUCKET }}
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          AWS_REGION: ${{ secrets.AWS_REGION }}
-          SOURCE_DIR: 'myshowcase'  # Change this if your HTML files are in a different folder
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-1  # <--- CHANGE THIS to your bucket region (e.g., ap-south-1 for Mumbai)
+
+      # Step 3: Upload ONLY the 'myshowcase' folder content
+      - name: Deploy to S3
+        run: |
+          aws s3 sync ./myshowcase s3://${{ secrets.AWS_S3_BUCKET }} --delete
