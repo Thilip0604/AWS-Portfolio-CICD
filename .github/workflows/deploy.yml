@@ -22,9 +22,9 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: us-east-1
 
-      # STEP 3: Upload to S3
+      # STEP 3: Upload only the myshowcase folder
       - name: Deploy to S3
         run: |
           echo "Uploading portfolio to S3..."
-          aws s3 sync . s3://${{ secrets.AWS_S3_BUCKET }} --delete
+          aws s3 sync myshowcase/ s3://${{ secrets.AWS_S3_BUCKET }} --delete
           echo "Deployment completed!"
