@@ -10,11 +10,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # STEP 1: Checkout Code
       - name: Checkout Code
         uses: actions/checkout@v3
 
-      # STEP 2: Configure AWS
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v2
         with:
@@ -22,9 +20,8 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: us-east-1
 
-      # STEP 3: Upload to S3
       - name: Deploy to S3
         run: |
           echo "Uploading portfolio to S3..."
-          aws s3 sync . s3://${{ secrets.S3_BUCKET_NAME }} --delete
+          aws s3 sync . s3://${{ secrets.AWS_S3_BUCKET }} --delete
           echo "Deployment completed!"
