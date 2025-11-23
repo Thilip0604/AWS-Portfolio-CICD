@@ -1,33 +1,30 @@
-name: Deploy Portfolio to S3
+name: Deploy Portfolio to AWS S3
 
 on:
   push:
     branches:
-      - main  # Ensures this runs only when you push to the main branch
+      - main
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    
-    # These permissions are needed to interact with the repository
-    permissions:
-      id-token: write
-      contents: read
 
     steps:
-      # Step 1: Get your code from GitHub
+      # STEP 1: Checkout Code
       - name: Checkout Code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v3
 
-      # Step 2: Log in to AWS (The Official Way)
+      # STEP 2: Configure AWS
       - name: Configure AWS Credentials
-        uses: aws-actions/configure-aws-credentials@v4
+        uses: aws-actions/configure-aws-credentials@v2
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: us-east-1  # <--- CHANGE THIS to your bucket region (e.g., ap-south-1 for Mumbai)
+          aws-region: us-east-1
 
-      # Step 3: Upload ONLY the 'myshowcase' folder content
+      # STEP 3: Upload to S3
       - name: Deploy to S3
         run: |
-          aws s3 sync ./myshowcase s3://${{ secrets.AWS_S3_BUCKET }} --delete
+          echo "Uploading portfolio to S3..."
+          aws s3 sync . s3://${{ secrets.S3_BUCKET_NAME }} --delete
+          echo "Deployment completed!"
