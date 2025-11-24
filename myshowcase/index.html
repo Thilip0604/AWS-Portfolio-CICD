@@ -592,80 +592,74 @@
 
           <!-- Contact Form -->
 
-          <form action="https://api.web3forms.com/submit" method="POST">
-  <input type="hidden" name="access_key" value="888e7f54-55cd-4a73-b01c-61111aa9d90d">
-  <input type="text" name="name" required>
-  <input type="email" name="email" required>
-  <textarea name="message" required></textarea>
-  <button type="submit">Submit Form</button>
-</form>
-
+          
           <div class="bg-slate-900 p-8 rounded-2xl border border-slate-800">
-            <form id="contactForm" class="space-y-6">
-              <div>
-                <label
-                  for="name"
-                  class="block text-sm font-medium text-gray-400 mb-2"
-                  >Name</label
-                >
-                <input
-                  type="text"
-                  id="name"
-                  required
-                  class="w-full px-4 py-3 bg-slate-950 border border-slate-800 rounded-lg focus:outline-none focus:border-blue-500 text-white placeholder-gray-600 transition-colors"
-                  placeholder="Your Name"
-                />
-              </div>
-              <div>
-                <label
-                  for="email"
-                  class="block text-sm font-medium text-gray-400 mb-2"
-                  >Email</label
-                >
-                <input
-                  type="email"
-                  id="email"
-                  required
-                  class="w-full px-4 py-3 bg-slate-950 border border-slate-800 rounded-lg focus:outline-none focus:border-blue-500 text-white placeholder-gray-600 transition-colors"
-                  placeholder="your@email.com"
-                />
-              </div>
-              <div>
-                <label
-                  for="subject"
-                  class="block text-sm font-medium text-gray-400 mb-2"
-                  >Subject</label
-                >
-                <input
-                  type="text"
-                  id="subject"
-                  required
-                  class="w-full px-4 py-3 bg-slate-950 border border-slate-800 rounded-lg focus:outline-none focus:border-blue-500 text-white placeholder-gray-600 transition-colors"
-                  placeholder="Project Inquiry"
-                />
-              </div>
-              <div>
-                <label
-                  for="message"
-                  class="block text-sm font-medium text-gray-400 mb-2"
-                  >Message</label
-                >
-                <textarea
-                  id="message"
-                  rows="4"
-                  required
-                  class="w-full px-4 py-3 bg-slate-950 border border-slate-800 rounded-lg focus:outline-none focus:border-blue-500 text-white placeholder-gray-600 transition-colors"
-                  placeholder="Your message..."
-                ></textarea>
-              </div>
-              <button
-                type="submit"
-                class="w-full py-4 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-bold transition-all shadow-lg shadow-blue-600/20"
-              >
-                Send Message
-              </button>
-            </form>
-          </div>
+  <form action="https://api.web3forms.com/submit" method="POST" class="space-y-6">
+    
+    <!-- REQUIRED: Web3Forms Access Key -->
+    <input type="hidden" name="access_key" value="888e7f54-55cd-4a73-b01c-61111aa9d90d">
+
+    <!-- OPTIONAL BUT RECOMMENDED: Success Redirect -->
+    <input type="hidden" name="redirect" value="https://yourwebsite.com/success.html">
+
+    <!-- Name -->
+    <div>
+      <label class="block text-sm font-medium text-gray-400 mb-2">Name</label>
+      <input
+        type="text"
+        name="name"
+        required
+        class="w-full px-4 py-3 bg-slate-950 border border-slate-800 rounded-lg focus:outline-none focus:border-blue-500 text-white placeholder-gray-600 transition-colors"
+        placeholder="Your Name"
+      />
+    </div>
+
+    <!-- Email -->
+    <div>
+      <label class="block text-sm font-medium text-gray-400 mb-2">Email</label>
+      <input
+        type="email"
+        name="email"
+        required
+        class="w-full px-4 py-3 bg-slate-950 border border-slate-800 rounded-lg focus:outline-none focus:border-blue-500 text-white placeholder-gray-600 transition-colors"
+        placeholder="your@email.com"
+      />
+    </div>
+
+    <!-- Subject -->
+    <div>
+      <label class="block text-sm font-medium text-gray-400 mb-2">Subject</label>
+      <input
+        type="text"
+        name="subject"
+        required
+        class="w-full px-4 py-3 bg-slate-950 border border-slate-800 rounded-lg focus:outline-none focus:border-blue-500 text-white placeholder-gray-600 transition-colors"
+        placeholder="Project Inquiry"
+      />
+    </div>
+
+    <!-- Message -->
+    <div>
+      <label class="block text-sm font-medium text-gray-400 mb-2">Message</label>
+      <textarea
+        name="message"
+        rows="4"
+        required
+        class="w-full px-4 py-3 bg-slate-950 border border-slate-800 rounded-lg focus:outline-none focus:border-blue-500 text-white placeholder-gray-600 transition-colors"
+        placeholder="Your message..."
+      ></textarea>
+    </div>
+
+    <button
+      type="submit"
+      class="w-full py-4 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-bold transition-all shadow-lg shadow-blue-600/20"
+    >
+      Send Message
+    </button>
+
+  </form>
+</div>
+
         </div>
       </div>
     </section>
