@@ -21,10 +21,12 @@ jobs:
           aws-region: ${{ secrets.AWS_REGION }}
 
       - name: Sync to S3
+        # CHANGED: Replaced "myshowcase" with "." and added exclusions
         run: |
-          aws s3 sync myshowcase s3://${{ secrets.AWS_S3_BUCKET }} --delete --acl public-read
+          aws s3 sync . s3://${{ secrets.AWS_S3_BUCKET }} --delete --exclude ".git/*" --exclude ".github/*"
 
       - name: Invalidate CloudFront Cache
+        # This will work now that you have added the Secret in Step 1
         run: |
           aws cloudfront create-invalidation \
           --distribution-id ${{ secrets.CF_DISTRIBUTION_ID }} \
