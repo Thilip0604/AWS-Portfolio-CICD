@@ -1,0 +1,144 @@
+/* Custom Color Engine & Glassmorphism Design System matched to 3D Cosmic Flame Background */
+:root {
+  --bg-body: #fcf7fa;
+  --bg-nav: transparent;
+  --bg-card: rgba(255, 255, 255, 0.82);
+  --border-color: rgba(244, 63, 94, 0.18);
+  --border-hover: rgba(255, 45, 107, 0.6);
+  --text-heading: #1e1b4b;
+  --text-main: #334155;
+  --text-muted: #64748b;
+  --glow-color: rgba(255, 45, 107, 0.25);
+  --glow-secondary: rgba(255, 211, 107, 0.2);
+  --chip-bg: rgba(255, 241, 245, 0.9);
+  --chip-border: rgba(244, 63, 94, 0.25);
+  --chip-text: #9f1239;
+  --accent-flame: #ff2d6b;
+  --accent-gold: #d97706;
+}
+
+html.dark {
+  --bg-body: rgba(26, 4, 24, 0.4);
+  --bg-nav: transparent;
+  --bg-card: rgba(30, 10, 34, 0.65);
+  --border-color: rgba(255, 122, 176, 0.22);
+  --border-hover: rgba(255, 45, 107, 0.7);
+  --text-heading: #ffffff;
+  --text-main: #f1f5f9;
+  --text-muted: #cbd5e1;
+  --glow-color: rgba(255, 45, 107, 0.4);
+  --glow-secondary: rgba(255, 211, 107, 0.3);
+  --chip-bg: rgba(45, 12, 48, 0.6);
+  --chip-border: rgba(255, 122, 176, 0.3);
+  --chip-text: #ffe4e6;
+  --accent-flame: #ff2d6b;
+  --accent-gold: #ffd36b;
+}
+
+body {
+  background-color: var(--bg-body);
+  color: var(--text-main);
+  font-family: 'Inter', sans-serif;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Outfit', sans-serif;
+  color: var(--text-heading);
+}
+
+/* 3D Canvas Background Layer */
+#bg-3d-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.glass-nav {
+  background: transparent;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  border-bottom: 1px solid transparent;
+  box-shadow: none;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.glass-nav.nav-scrolled {
+  background: rgba(255, 255, 255, 0.05) !important;
+  backdrop-filter: blur(10px) saturate(130%) !important;
+  -webkit-backdrop-filter: blur(10px) saturate(130%) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12) !important;
+  box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.15) !important;
+}
+
+.glass-card {
+  background: var(--bg-card);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--border-color);
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.25);
+}
+
+.glass-card:hover {
+  border-color: var(--border-hover);
+  box-shadow: 0 14px 35px -8px var(--glow-color), 0 0 20px 0 var(--glow-secondary);
+  transform: translateY(-4px);
+}
+
+/* Cosmic Flame Vibrant Gradient Text matching 3D Warp Shaders */
+.gradient-text {
+  background: linear-gradient(135deg, #ff2d6b 0%, #ff7ab0 45%, #ffd36b 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 30px rgba(255, 45, 107, 0.3);
+}
+
+/* Cosmic Flame Sub-Gradient for Headings / Accent Text */
+.gradient-accent {
+  background: linear-gradient(135deg, #ffd36b 0%, #ff2d6b 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Skill Chips & Badge Styling */
+.skill-chip {
+  background: var(--chip-bg);
+  border: 1px solid var(--chip-border);
+  color: var(--chip-text);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition: all 0.25s ease;
+}
+
+.skill-chip:hover {
+  transform: translateY(-2px) scale(1.04);
+  border-color: var(--border-hover);
+  box-shadow: 0 4px 18px -2px var(--glow-color);
+  background: rgba(255, 45, 107, 0.2);
+}
+
+/* Glowing Border Utilities */
+.border-cosmic {
+  border-color: var(--border-color);
+}
+
+.border-cosmic-hover:hover {
+  border-color: var(--border-hover);
+  box-shadow: 0 0 15px -3px var(--glow-color);
+}
+
+/* Input Focus & Custom Styling */
+input, textarea {
+  transition: all 0.25s ease;
+}
+
+input:focus, textarea:focus {
+  border-color: var(--accent-flame) !important;
+  box-shadow: 0 0 0 3px rgba(255, 45, 107, 0.25) !important;
+}
