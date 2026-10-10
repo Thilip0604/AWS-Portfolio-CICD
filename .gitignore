@@ -1,0 +1,10 @@
+# Environment & OS
+.DS_Store
+Thumbs.db
+node_modules/
+
+# Agent configuration
+.agents/
+myshowcase/.agents/
+skills-lock.json
+myshowcase/skills-lock.json
