@@ -42,7 +42,7 @@ html {
   color: var(--text-main);
   font-family: var(--font-sans);
   scroll-behavior: smooth;
-  scroll-padding-top: 5.5rem;
+  scroll-padding-top: 4rem;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -228,7 +228,7 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Accurate Section Anchor Margin */
 .section-anchor {
-  scroll-margin-top: 5.5rem;
+  scroll-margin-top: 4rem;
 }
 
 /* Reduced Motion Override */

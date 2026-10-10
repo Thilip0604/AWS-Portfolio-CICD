@@ -118,9 +118,21 @@ document.addEventListener('DOMContentLoaded', () => {
           if (mobileBtn) mobileBtn.setAttribute('aria-expanded', 'false');
         }
 
-        // Accurate offset scroll calculation
-        const headerOffset = 76;
-        const targetPosition = targetEl.getBoundingClientRect().top + window.pageYOffset - headerOffset;
+        // Special case: Home scrolls to absolute top of viewport
+        if (targetId === '#home') {
+          window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+          });
+          if (window.history && window.history.pushState) {
+            window.history.pushState(null, '', '#home');
+          }
+          return;
+        }
+
+        // Accurate offset scroll calculation for section headers (64px = navbar height)
+        const headerOffset = 64;
+        const targetPosition = Math.max(0, targetEl.getBoundingClientRect().top + window.pageYOffset - headerOffset);
 
         window.scrollTo({
           top: targetPosition,
@@ -128,7 +140,9 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         // Update URL hash cleanly
-        history.pushState(null, null, targetId);
+        if (window.history && window.history.pushState) {
+          window.history.pushState(null, '', targetId);
+        }
       }
     });
   });
